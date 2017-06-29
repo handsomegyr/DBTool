@@ -1,0 +1,221 @@
+﻿<Window x:Class="DBTool.SettingsWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="表字段设置" Height="300" Width="400" WindowStartupLocation="CenterOwner" ShowInTaskbar="False" WindowStyle="ToolWindow" IsManipulationEnabled="False" Closing="Window_Closing" Topmost="True" Loaded="Window_Loaded">
+    <Grid ShowGridLines="False" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+            <RowDefinition MinHeight="23" MaxHeight="23" />
+        </Grid.RowDefinitions>
+        
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="300"/>
+        </Grid.ColumnDefinitions>
+
+        <Grid Grid.Column="0" Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
+            <TabControl Grid.Column="0" Grid.Row="0" x:Name="tabControl" HorizontalAlignment="Stretch" Margin="0,0,0,0" VerticalAlignment="Stretch" >
+            <TabItem x:Name="myDataTab" Header="基本设置">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition MinHeight="23" />
+                        <RowDefinition MinHeight="23" />
+                        <RowDefinition MinHeight="23" />
+                        <RowDefinition MinHeight="23" />
+                        <RowDefinition MinHeight="23" />
+                        <RowDefinition MinHeight="23" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition MinWidth="60"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <TextBlock Grid.Column="0" Grid.Row="0"   HorizontalAlignment="Left" x:Name="tbName" Text="字段名："   VerticalAlignment="Center" />
+                        <TextBox Grid.Column="1" Grid.Row="0"  Height="23" HorizontalScrollBarVisibility="Hidden" x:Name="txtName" VerticalAlignment="Stretch" VerticalContentAlignment="Center"   HorizontalAlignment="Stretch" Text="{Binding Path=FieldName,Mode=TwoWay}" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Left" x:Name="tbComment" Text="字段描述：" VerticalAlignment="Center" TextAlignment="Left"   />
+                        <TextBox Grid.Column="1" Grid.Row="1"  Height="23" x:Name="txtComment" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Hidden" VerticalContentAlignment="Center"  HorizontalAlignment="Stretch" Text="{Binding Path=FieldComment,Mode=TwoWay}" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="2"  HorizontalAlignment="Left" x:Name="tbNotNull" Text="设置非空：" VerticalAlignment="Center"   />
+                        <CheckBox Grid.Column="1" Grid.Row="2" Height="23" Content=""  HorizontalAlignment="Stretch" x:Name="chkIsNotNull" VerticalAlignment="Stretch" VerticalContentAlignment="Center" IsChecked="{Binding Path=DataDbSettings.IsNotNull,Mode=TwoWay}"   />
+
+                    <TextBlock Grid.Column="0" Grid.Row="3"  HorizontalAlignment="Left" x:Name="tbDataType" Text="数据类型：" VerticalAlignment="Center"   />
+                        <ComboBox Grid.Column="1" Grid.Row="3" Height="23" x:Name="cbDataType" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedItem="{Binding Path=DataDbSettings.SelectDataType,Mode=TwoWay}" >
+                            <ComboBox.ItemTemplate>
+                            <DataTemplate>
+                                <Grid Margin="3">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                        <ColumnDefinition Width="*"></ColumnDefinition>
+                                    </Grid.ColumnDefinitions>
+                                    <TextBlock Grid.Column="0" Padding="5" VerticalAlignment="Center"  Text="{Binding Path=TypeName}"></TextBlock>
+                                        <TextBlock Grid.Column="1" Padding="6" VerticalAlignment="Center"  Text="{Binding Path=TypeValue}"></TextBlock>
+                                </Grid>
+                            </DataTemplate>
+                        </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <TextBlock Grid.Column="0" Grid.Row="4"  HorizontalAlignment="Left" x:Name="tbLength" Text="数据长度：" VerticalAlignment="Center"   />
+                        <TextBox Grid.Column="1" Grid.Row="4"  Height="23" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Hidden" x:Name="txtLength" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Text="{Binding Path=DataDbSettings.DataLength,Mode=TwoWay}" />
+
+                    <TextBlock Grid.Column="0" Grid.Row="5"  HorizontalAlignment="Left" x:Name="tbDefaultValue" Text="默认值：" VerticalAlignment="Center"  />
+                        <TextBox Grid.Column="1" Grid.Row="5"  Height="23" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Hidden" x:Name="txtDefaultValue" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Text="{Binding Path=DataDbSettings.DefaultValue,Mode=TwoWay}"   />
+
+                </Grid>
+            </TabItem>
+            <TabItem x:Name="myFormTab" Header="表单设置">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="23" />
+                            <RowDefinition MinHeight="23" />
+                            <RowDefinition MinHeight="23" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="60"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" x:Name="tbIsRequire" Text="是否必须：" VerticalAlignment="Center"   />
+                        <CheckBox Grid.Column="1" Grid.Row="0" Height="23" Content=""  HorizontalAlignment="Stretch" x:Name="chkIsRequire" VerticalAlignment="Stretch" VerticalContentAlignment="Center" IsChecked="{Binding Path=DataFormSettings.IsRequire,Mode=TwoWay}"   />
+
+                        <TextBlock Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Left" x:Name="tbIsShow" Text="是否显示：" VerticalAlignment="Center"   />
+                        <CheckBox Grid.Column="1" Grid.Row="1" Height="23" Content=""  HorizontalAlignment="Stretch" x:Name="chkIsShow" VerticalAlignment="Stretch" VerticalContentAlignment="Center" IsChecked="{Binding Path=DataFormSettings.IsShow,Mode=TwoWay}"   />
+
+                       
+                        <TextBlock Grid.Column="0" Grid.Row="2"  HorizontalAlignment="Left" x:Name="tbInputType" Text="显示方式：" VerticalAlignment="Center"   />
+                        <ComboBox Grid.Column="1" Grid.Row="2" Height="23" x:Name="cbInputType" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedItem="{Binding Path=DataFormSettings.SelectInputType,Mode=TwoWay}" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Padding="5" VerticalAlignment="Center"  Text="{Binding Path=TypeName}"></TextBlock>
+                                        <TextBlock Grid.Column="1" Padding="6" VerticalAlignment="Center"  Text="{Binding Path=TypeValue}"></TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                    </Grid>
+                </TabItem>
+            <TabItem x:Name="myListTab" Header="列表设置">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="23" />
+                            <RowDefinition MinHeight="23" />
+                            <RowDefinition MinHeight="23" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="60"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" x:Name="tbIsListShow" Text="是否显示：" VerticalAlignment="Center"   />
+                        <CheckBox Grid.Column="1" Grid.Row="0" Height="23" Content=""  HorizontalAlignment="Stretch" x:Name="chkIsListShow" VerticalAlignment="Stretch" VerticalContentAlignment="Center" IsChecked="{Binding Path=DataListSettings.IsShow,Mode=TwoWay}"   />
+
+
+                        <TextBlock Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Left" x:Name="tbListInputType" Text="显示方式：" VerticalAlignment="Center"   />
+                        <ComboBox Grid.Column="1" Grid.Row="1" Height="23" x:Name="cbListInputType" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedItem="{Binding Path=DataListSettings.SelectInputType,Mode=TwoWay}" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Padding="5" VerticalAlignment="Center"  Text="{Binding Path=TypeName}"></TextBlock>
+                                        <TextBlock Grid.Column="1" Padding="6" VerticalAlignment="Center"  Text="{Binding Path=TypeValue}"></TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <TextBlock Grid.Column="0" Grid.Row="2"  HorizontalAlignment="Left" x:Name="tbAjax" Text="AJAX：" VerticalAlignment="Center"  />
+                        <TextBox Grid.Column="1" Grid.Row="2"  Height="23" HorizontalAlignment="Stretch" HorizontalScrollBarVisibility="Hidden" x:Name="txtAjax" VerticalAlignment="Stretch" VerticalContentAlignment="Center" Text="{Binding Path=DataDbSettings.Ajax,Mode=TwoWay}"   />
+
+                        
+                    </Grid>
+                </TabItem>
+            <TabItem x:Name="mySearchTab" Header="检索设置">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="23" />
+                            <RowDefinition MinHeight="23" />
+                            <RowDefinition MinHeight="23" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="60"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+
+                        <TextBlock Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" x:Name="tbIsSearchable" Text="是否显示：" VerticalAlignment="Center"   />
+                        <CheckBox Grid.Column="1" Grid.Row="0" Height="23" Content=""  HorizontalAlignment="Stretch" x:Name="chkIsSearchable" VerticalAlignment="Stretch" VerticalContentAlignment="Center" IsChecked="{Binding Path=DataSearchSettings.IsShow,Mode=TwoWay}"   />
+
+
+                        <TextBlock Grid.Column="0" Grid.Row="1"  HorizontalAlignment="Left" x:Name="tbSearchInputType" Text="显示方式：" VerticalAlignment="Center"   />
+                        <ComboBox Grid.Column="1" Grid.Row="1" Height="23" x:Name="cbSearchInputType" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedItem="{Binding Path=DataSearchSettings.SelectInputType,Mode=TwoWay}" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Padding="5" VerticalAlignment="Center"  Text="{Binding Path=TypeName}"></TextBlock>
+                                        <TextBlock Grid.Column="1" Padding="6" VerticalAlignment="Center"  Text="{Binding Path=TypeValue}"></TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+
+                        <TextBlock Grid.Column="0" Grid.Row="2"  HorizontalAlignment="Left" x:Name="tbSearchConditionType" Text="条件显示方式：" VerticalAlignment="Center"   />
+                        <ComboBox Grid.Column="1" Grid.Row="2" Height="23" x:Name="cbSearchConditionType" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" SelectedItem="{Binding Path=DataSearchSettings.SelectConditionType,Mode=TwoWay}" >
+                            <ComboBox.ItemTemplate>
+                                <DataTemplate>
+                                    <Grid Margin="3">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="Auto"></ColumnDefinition>
+                                            <ColumnDefinition Width="*"></ColumnDefinition>
+                                        </Grid.ColumnDefinitions>
+                                        <TextBlock Grid.Column="0" Padding="5" VerticalAlignment="Center"  Text="{Binding Path=TypeName}"></TextBlock>
+                                        <TextBlock Grid.Column="1" Padding="6" VerticalAlignment="Center"  Text="{Binding Path=TypeValue}"></TextBlock>
+                                    </Grid>
+                                </DataTemplate>
+                            </ComboBox.ItemTemplate>
+                        </ComboBox>
+                        
+                    </Grid>
+                </TabItem>
+            <TabItem x:Name="myExportTab" Header="导出设置">
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition MinHeight="23" />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition MinWidth="60"/>
+                            <ColumnDefinition />
+                        </Grid.ColumnDefinitions>
+                        
+                        <TextBlock Grid.Column="0" Grid.Row="0"  HorizontalAlignment="Left" x:Name="tbIsExportable" Text="是否显示：" VerticalAlignment="Center"   />
+                        <CheckBox Grid.Column="1" Grid.Row="0" Height="23" Content=""  HorizontalAlignment="Stretch" x:Name="chkIsExportable" VerticalAlignment="Stretch" VerticalContentAlignment="Center" IsChecked="{Binding Path=DataExportSettings.IsShow,Mode=TwoWay}"   />
+
+                    </Grid>
+                </TabItem>
+            </TabControl>
+        </Grid>
+
+        <Grid Grid.Column="0" Grid.Row="1">
+            <Grid.RowDefinitions>
+                <RowDefinition MinHeight="30" />
+            </Grid.RowDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="50"/>
+                <ColumnDefinition MinWidth="50" />
+            </Grid.ColumnDefinitions>
+
+            <Button Grid.Column="1" Grid.Row="0" Content="确认关闭"  HorizontalAlignment="Stretch" Name="button1" VerticalAlignment="Stretch"  Click="button1_Click"  />
+            <Button Grid.Column="0" Grid.Row="0" Content="取消"  HorizontalAlignment="Stretch"  Name="button3" VerticalAlignment="Stretch"  Click="button3_Click" />
+        </Grid>
+    </Grid>
+</Window>
