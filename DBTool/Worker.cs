@@ -238,7 +238,7 @@ namespace DBTool
         protected static string getSchema(FieldSettings f)
         {
             var dataType = f.DataDbSettings.SelectDataType.TypeValue;
-            if (f.DataDbSettings.SelectDataType.TypeValue == "varchar" || f.DataDbSettings.SelectDataType.TypeValue == "char")
+            if (f.DataDbSettings.SelectDataType.TypeValue == "varchar" || f.DataDbSettings.SelectDataType.TypeValue == "char" || f.DataDbSettings.SelectDataType.TypeValue == "text")
             {
                 dataType = "string";
             }

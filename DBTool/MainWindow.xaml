@@ -44,9 +44,9 @@
             <TextBlock Grid.Column="6"  Width="80" HorizontalAlignment="Left" x:Name="tbClass" Text=" 类名*：" VerticalAlignment="Center" TextAlignment="Left"   />
             <TextBox Grid.Column="7"   Height="23" x:Name="txtClassName" VerticalAlignment="Stretch" HorizontalScrollBarVisibility="Hidden" VerticalContentAlignment="Center"  HorizontalAlignment="Stretch" Text="{Binding Path=ClassName,Mode=TwoWay}" />
 
-            
-            <Button Grid.Column="8" Content="新增字段" Height="24" HorizontalAlignment="Right" Name="btnCreate" VerticalAlignment="Center" Click="btnCreate_Click" Margin="0,14,170,12"   />
-            <Button Grid.Column="8" Content="加载" Height="24" HorizontalAlignment="Right" Name="btnLoad" VerticalAlignment="Center" Click="btnload_Click" Margin="0,14,72,12" Width="54"   />
+
+            <Button Grid.Column="8" Content="新增字段" Height="24" HorizontalAlignment="Right" Name="btnCreate" VerticalAlignment="Center" Click="btnCreate_Click" Margin="0,14,68,12"  Width="54"  />
+            <Button Grid.Column="8" Content="加载" Height="24" HorizontalAlignment="Right" Name="btnLoad" VerticalAlignment="Center" Click="btnload_Click" Margin="0,14,10,12" Width="54"   />
         </Grid>
         <StackPanel Grid.Row="1" Orientation="Horizontal">
             <TextBlock HorizontalAlignment="Stretch" Name="textBlock2" Text="" VerticalAlignment="Center" TextAlignment="Justify" Padding="10,0,0,0" />
@@ -78,7 +78,7 @@
                         <TextBlock Grid.Column="4" Padding="6" VerticalAlignment="Center"  Text="{Binding Path=DataDbSettings.DataLength}"></TextBlock>
                         <TextBlock Grid.Column="5" Padding="6" VerticalAlignment="Center"  Text="{Binding Path=DataFormSettings.SelectInputType.TypeName}"></TextBlock>
                         <TextBlock Grid.Column="6" Padding="6" VerticalAlignment="Center"  Text="{Binding Path=DataSearchSettings.SelectInputType.TypeName}"></TextBlock>
-                        
+
                         <TextBlock Grid.Column="7" Padding="3" VerticalAlignment="Center"  Text="{Binding Path=Status}"></TextBlock>
                         <Button Tag="{Binding Path=FieldName}" Grid.Column="8"  Content=" 编辑 " Height="23" HorizontalAlignment="Left" Name="btnUpdate" VerticalAlignment="Center" Click="btnUpdate_Click"   />
                         <Button Tag="{Binding Path=FieldName}" Grid.Column="9"  Content=" 删除 " Height="23" HorizontalAlignment="Right" Name="btnDelete" VerticalAlignment="Center" Click="btnDelete_Click"   />
