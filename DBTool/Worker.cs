@@ -251,11 +251,19 @@ namespace DBTool
 
             if (f.DataDbSettings.SelectDataType.TypeValue == "boolean")
             {
+                if (string.IsNullOrEmpty(f.DataDbSettings.DefaultValue)){
+                    f.DataDbSettings.DefaultValue = "false";
+                }
+                
                 f.DataDbSettings.DataLength = 1;
             }
 
             if (f.DataDbSettings.SelectDataType.TypeValue == "integer")
             {
+                if (string.IsNullOrEmpty(f.DataDbSettings.DefaultValue))
+                {
+                    f.DataDbSettings.DefaultValue = "0";
+                }
                 f.DataDbSettings.DataLength = 11;
             }
 
@@ -283,7 +291,7 @@ namespace DBTool
             {
             sb.AppendLine(@"        'defaultValue' => '" + f.DataDbSettings.DefaultValue + "',");
             }
-            if (f.DataFormSettings.SelectInputType.TypeValue == "file")
+            if (f.DataDbSettings.SelectDataType.TypeValue == "file")
             {
             sb.AppendLine(@"        'file' => array(");
             sb.AppendLine(@"            'path' => $this->modelXXX->getUploadPath()");
@@ -296,11 +304,17 @@ namespace DBTool
             sb.AppendLine(@"    ),");
 
             // 表单配置
-            sb.AppendLine(@"    'form' => array(");
-            if (f.DataFormSettings.IsShow) {
+            sb.AppendLine(@"    'form' => array(");            
             if (f.DataFormSettings.SelectInputType.TypeValue != "partial")
             {
+            if (f.DataFormSettings.SelectInputType.TypeValue == "image")
+            {
+            sb.AppendLine(@"        'input_type' => 'file',");
+            }
+            else
+            {
             sb.AppendLine(@"        'input_type' => '" + f.DataFormSettings.SelectInputType.TypeValue + "',");
+            }                    
             }
             else
             {
@@ -326,13 +340,11 @@ namespace DBTool
             }
             sb.AppendLine(@"        ),");
             }
-            }
             sb.AppendLine(@"        'is_show' => " + f.DataFormSettings.IsShow.ToString().ToLower() + "");
             sb.AppendLine(@"    ),");
 
             // 列表配置
-            sb.AppendLine(@"    'list' => array(");
-            if (f.DataListSettings.IsShow) { 
+            sb.AppendLine(@"    'list' => array(");            
             if (f.DataDbSettings.SelectDataType.TypeValue == "boolean")
             {
             sb.AppendLine(@"        'list_type' => '1', ");
@@ -349,13 +361,11 @@ namespace DBTool
             {
             sb.AppendLine(@"        'list_data_name' => '" + f.FieldName + "_name',");
             }
-            }
             sb.AppendLine(@"        'is_show' => " + f.DataListSettings.IsShow.ToString().ToLower() + "");
             sb.AppendLine(@"    ),");
 
             // 检索配置
-            sb.AppendLine(@"    'search' => array(");
-            if (f.DataSearchSettings.IsShow) { 
+            sb.AppendLine(@"    'search' => array(");            
             sb.AppendLine(@"        'input_type' => '" + f.DataSearchSettings.SelectInputType.TypeValue + "',");
             sb.AppendLine(@"        'condition_type' => '" + f.DataSearchSettings.SelectConditionType.TypeValue + "',");
             sb.AppendLine(@"        'defaultValues' => array(),");
@@ -366,13 +376,11 @@ namespace DBTool
             sb.AppendLine(@"            return $this->modelXXXX->getAll();");
             sb.AppendLine(@"        },");
             }
-            }
             sb.AppendLine(@"        'is_show' => " + f.DataSearchSettings.IsShow.ToString().ToLower() + "");
             sb.AppendLine(@"    ),");
 
             // 导出配置
-            sb.AppendLine(@"    'export' => array(");
-            if (f.DataExportSettings.IsShow) {}
+            sb.AppendLine(@"    'export' => array(");            
             sb.AppendLine(@"        'is_show' => " + f.DataExportSettings.IsShow.ToString().ToLower() + "");
             sb.AppendLine(@"    )");
             sb.AppendLine(@"); ");
